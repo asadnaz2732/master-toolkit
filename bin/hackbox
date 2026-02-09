@@ -1,30 +1,43 @@
 #!/data/data/com.termux/files/usr/bin/bash
-DIR="/data/data/com.termux/files/usr/share"
+
+# --- Color Definitions ---
+R='\033[1;31m'  # Red
+G='\033[1;32m'  # Green
+Y='\033[1;33m'  # Yellow
+B='\033[1;34m'  # Blue
+P='\033[1;35m'  # Purple
+C='\033[1;36m'  # Cyan
+W='\033[1;37m'  # White
+D='\033[0;90m'  # Dark Gray
+NC='\033[0m'    # No Color
 
 clear
-echo "=================================="
-echo "    MY CUSTOM MASTER TOOLBOX      "
-echo "=================================="
-echo "1) Seeker        5) GhostTrack"
-echo "2) CamPhish     6) Storm-Breaker"
-echo "3) SayCheese    7) XLR8 Bomber"
-echo "4) GrabCam      8) Metasploit"
-echo "9) Cloudflared  10) Ngrok"
-echo "11) Exit"
-echo "=================================="
-read -p "Choose a tool: " choice
+echo -e "${B}╔════════════════════════════════════════════════╗"
+echo -e "║${W}      🛡️  NOUL BROTHERS MASTER TOOLBOX 🛡️       ${B}║"
+echo -e "╚════════════════════════════════════════════════╝${NC}"
+
+echo -e "${D}  ID     NAME                 ID     NAME${NC}"
+echo -e "  ──     ────                 ──     ────"
+echo -e "  [${C}01${NC}] ${W}Seeker${NC}             [${C}05${NC}] ${W}GhostTrack${NC}"
+echo -e "  [${C}02${NC}] ${W}CamPhish${NC}           [${C}06${NC}] ${W}Storm-Breaker${NC}"
+echo -e "  [${C}03${NC}] ${W}SayCheese${NC}          [${C}07${NC}] ${W}Metasploit${NC}"
+echo -e "  [${C}04${NC}] ${W}GrabCam${NC}            [${C}08${NC}] ${W}Cloudflared${NC}"
+echo -e "${B}  ────────────────────────────────────────────────${NC}"
+echo -e "  [${R}09${NC}] ${R}EXIT TERMINAL${NC}"
+echo -e "${B}  ────────────────────────────────────────────────${NC}"
+
+echo -ne "${Y}  [>] Choose a tool to execute: ${NC}"
+read choice
 
 case $choice in
-    1) python3 $DIR/seeker/seeker.py ;;
-    2) cd $DIR/CamPhish && bash camphish.sh ;;
-    3) cd $DIR/saycheese && bash saycheese.sh ;;
-    4) cd $DIR/grabcam && bash grabcam.sh ;;
-    5) python3 $DIR/GhostTrack/ghosttrack.py ;;
-    6) cd $DIR/Storm-Breaker && python3 st.py ;;
-    7) cd $DIR/XLR8_BOMBER && python3 xlr8.py ;;
-    8) msfconsole ;;
-    9) read -p "Port: " p && cloudflared tunnel --url http://127.0.0.1:$p ;;
-    10) read -p "Port: " p && ngrok http $p ;;
-    11) exit ;;
-    *) echo "Invalid"; sleep 1; hackbox ;;
+    1|01) cd ~/seeker && python3 seeker.py ;;
+    2|02) cd ~/CamPhish && bash camphish.sh ;;
+    3|03) cd ~/saycheese && bash saycheese.sh ;;
+    4|04) cd ~/grabcam && bash grabcam.sh ;;
+    5|05) cd ~/GhostTrack && python3 ghosttrack.py ;;
+    6|06) cd ~/Storm-Breaker && python3 st.py ;;
+    7|07) msfconsole ;;
+    8|08) read -p "Port: " p && cloudflared tunnel --url http://127.0.0.1:$p ;;
+    9|09) echo -e "${G}\n  [!] Closing Toolbox. Stay Safe!${NC}"; exit ;;
+    *) echo -e "${R}\n  [X] Error: '$choice' is not a valid tool.${NC}"; sleep 1.5; hackbox ;;
 esac
