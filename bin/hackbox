@@ -1,32 +1,43 @@
 #!/data/data/com.termux/files/usr/bin/bash
 
-# --- Color Definitions ---
-R='\033[1;31m'  # Red
-G='\033[1;32m'  # Green
-Y='\033[1;33m'  # Yellow
-B='\033[1;34m'  # Blue
-P='\033[1;35m'  # Purple
-C='\033[1;36m'  # Cyan
+# --- Color Pallete ---
+R='\033[1;31m'  # Neon Red
+G='\033[1;32m'  # Matrix Green
+Y='\033[1;33m'  # Warning Yellow
+B='\033[1;34m'  # Cyber Blue
+C='\033[1;36m'  # Electric Cyan
 W='\033[1;37m'  # White
-D='\033[0;90m'  # Dark Gray
-NC='\033[0m'    # No Color
+D='\033[2;90m'  # Dim Gray
+NC='\033[0m'    # Reset
 
 clear
-echo -e "${B}╔════════════════════════════════════════════════╗"
-echo -e "║${W}      🛡️  NOUL BROTHERS MASTER TOOLBOX 🛡️       ${B}║"
-echo -e "╚════════════════════════════════════════════════╝${NC}"
+echo -e "${C}┌────────────────────────────────────────────────────────┐"
+echo -e "│ ${W}   ⚡ ${B}NOUL BROTHERS ${W}NETWORK SECURITY INTERFACE ${W}⚡${C}    │"
+echo -e "└────────────────────────────────────────────────────────┘${NC}"
 
-echo -e "${D}  ID     NAME                 ID     NAME${NC}"
-echo -e "  ──     ────                 ──     ────"
-echo -e "  [${C}01${NC}] ${W}Seeker${NC}             [${C}05${NC}] ${W}GhostTrack${NC}"
-echo -e "  [${C}02${NC}] ${W}CamPhish${NC}           [${C}06${NC}] ${W}Storm-Breaker${NC}"
-echo -e "  [${C}03${NC}] ${W}SayCheese${NC}          [${C}07${NC}] ${W}Metasploit${NC}"
-echo -e "  [${C}04${NC}] ${W}GrabCam${NC}            [${C}08${NC}] ${W}Cloudflared${NC}"
-echo -e "${B}  ────────────────────────────────────────────────${NC}"
-echo -e "  [${R}09${NC}] ${R}EXIT TERMINAL${NC}"
-echo -e "${B}  ────────────────────────────────────────────────${NC}"
+echo -e " ${D}CORE SYSTEMS STATUS: ${G}ONLINE${NC}"
+echo -e " ${D}DATE: $(date +'%D') | TIME: $(date +'%T')${NC}"
+echo ""
 
-echo -ne "${Y}  [>] Choose a tool to execute: ${NC}"
+# Table Headers
+echo -e " ${C}ID   MODULE NAME            DESCRIPTION${NC}"
+echo -e " ${D}──   ───────────            ───────────${NC}"
+
+# Tool Grid
+echo -e " [${G}01${NC}] ${W}Seeker${NC}         ${D}>>${NC}  Precise Geolocation"
+echo -e " [${G}02${NC}] ${W}CamPhish${NC}       ${D}>>${NC}  Camera Feed Access"
+echo -e " [${G}03${NC}] ${W}SayCheese${NC}      ${D}>>${NC}  Webcam Snapshot"
+echo -e " [${G}04${NC}] ${W}GrabCam${NC}        ${D}>>${NC}  Remote Image Capture"
+echo -e " [${G}05${NC}] ${W}GhostTrack${NC}     ${D}>>${NC}  IP/Phone Tracking"
+echo -e " [${G}06${NC}] ${W}Storm-Breaker${NC}  ${D}>>${NC}  OSINT Framework"
+echo -e " [${G}07${NC}] ${W}Metasploit${NC}     ${D}>>${NC}  Exploitation Suite"
+echo -e " [${G}08${NC}] ${W}Cloudflared${NC}    ${D}>>${NC}  Secure HTTP Tunnel"
+
+echo -e "${C}──────────────────────────────────────────────────────────${NC}"
+echo -e " [${R}99${NC}] ${R}SYSTEM_SHUTDOWN (EXIT)${NC}"
+echo -e "${C}──────────────────────────────────────────────────────────${NC}"
+
+echo -ne "${Y}┌─[${W}Console@NoulBrothers${Y}]─[${W}~/Select_Module${Y}]\n└──╼ ${W}"
 read choice
 
 case $choice in
@@ -37,7 +48,7 @@ case $choice in
     5|05) cd ~/GhostTrack && python3 ghosttrack.py ;;
     6|06) cd ~/Storm-Breaker && python3 st.py ;;
     7|07) msfconsole ;;
-    8|08) read -p "Port: " p && cloudflared tunnel --url http://127.0.0.1:$p ;;
-    9|09) echo -e "${G}\n  [!] Closing Toolbox. Stay Safe!${NC}"; exit ;;
-    *) echo -e "${R}\n  [X] Error: '$choice' is not a valid tool.${NC}"; sleep 1.5; hackbox ;;
+    8|08) read -p "Enter Port: " p && cloudflared tunnel --url http://127.0.0.1:$p ;;
+    99) echo -e "${R}\n[!] Connection Terminated.${NC}"; exit ;;
+    *) echo -e "${Y}\n[!] Invalid input. Reloading system...${NC}"; sleep 1; hackbox ;;
 esac
